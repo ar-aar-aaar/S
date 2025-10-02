@@ -10,7 +10,90 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1 class="bitcount-prop-single-ink">Hola mundo</h1>
+    <div class="text-cnt">
+        <p class="intro bitcount-prop-single-ink">Para mi S favorita:</p>
+        <br>
+
+        <p class="text bitcount-prop-single-ink paragraph">Soñ&eacute;, sí te soñ&eacute; una vez más</p>
+    </div>
+    <div class="img-cnt">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-labelledby="title desc" preserveAspectRatio="xMidYMid meet">
+            <title>Beating pink heart with deep white glow and ellipsis</title>
+            <desc>A pink (#ff038d) heart with a very deep top notch, pulsing, with a long-falloff white glow and three evenly spaced white dots inside.</desc>
+          
+            <!-- Deep, wide, layered white glow -->
+            <defs>
+              <filter id="white-glow-deep" x="-200%" y="-200%" width="500%" height="500%" filterUnits="objectBoundingBox">
+                <!-- Slight dilation so the glow starts just outside the fill -->
+                <feMorphology in="SourceAlpha" operator="dilate" radius="1.5" result="expanded"/>
+          
+                <!-- Layer 1 (tight) -->
+                <feGaussianBlur in="expanded" stdDeviation="3" result="b1"/>
+                <feFlood flood-color="white" flood-opacity="0.85" result="f1"/>
+                <feComposite in="f1" in2="b1" operator="in" result="g1"/>
+          
+                <!-- Layer 2 (medium) -->
+                <feGaussianBlur in="expanded" stdDeviation="8" result="b2"/>
+                <feFlood flood-color="white" flood-opacity="0.45" result="f2"/>
+                <feComposite in="f2" in2="b2" operator="in" result="g2"/>
+          
+                <!-- Layer 3 (wide) -->
+                <feGaussianBlur in="expanded" stdDeviation="16" result="b3"/>
+                <feFlood flood-color="white" flood-opacity="0.20" result="f3"/>
+                <feComposite in="f3" in2="b3" operator="in" result="g3"/>
+          
+                <!-- Layer 4 (very wide) -->
+                <feGaussianBlur in="expanded" stdDeviation="24" result="b4"/>
+                <feFlood flood-color="white" flood-opacity="0.10" result="f4"/>
+                <feComposite in="f4" in2="b4" operator="in" result="g4"/>
+          
+                <!-- Combine layers + source -->
+                <feMerge>
+                  <feMergeNode in="g4"/>
+                  <feMergeNode in="g3"/>
+                  <feMergeNode in="g2"/>
+                  <feMergeNode in="g1"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
+            </defs>
+          
+            <!-- Center on origin so scale pulses from the middle.
+                 Larger canvas (400×400) ensures no clipping of beat or glow. -->
+            <g transform="translate(200 200)">
+              <g>
+                <!-- Double-beat pulse -->
+                <animateTransform attributeName="transform"
+                                  type="scale"
+                                  dur="1.6s"
+                                  repeatCount="indefinite"
+                                  values="1;1.16;1;1.16;1"
+                                  keyTimes="0;0.2;0.5;0.7;1"
+                                  calcMode="spline"
+                                  keySplines="0.25,0.1,0.25,1;0.25,0.1,0.25,1;0.25,0.1,0.25,1;0.25,0.1,0.25,1"/>
+          
+                <!-- Draw on a 200×200 grid centered in the larger canvas -->
+                <g transform="translate(-100 -100)">
+                  <!-- Heart with extra-deep top notch -->
+                  <path d="M100 64
+                           C134 12, 190 36, 190 92
+                           C190 128, 150 156, 100 190
+                           C50 156, 10 128, 10 92
+                           C10 36, 66 12, 100 64 Z"
+                        fill="#ff038d"
+                        filter="url(#white-glow-deep)"/>
+          
+                  <!-- Ellipsis: r=6, center spacing = 4r (=24) => one-diameter padding between dots -->
+                  <circle cx="76"  cy="112" r="6" fill="#ffffff"/>
+                  <circle cx="100" cy="112" r="6" fill="#ffffff"/>
+                  <circle cx="124" cy="112" r="6" fill="#ffffff"/>
+                </g>
+              </g>
+            </g>
+          </svg>
+          
+          
+    </div>
     <audio autoplay controls>
         <source src="https://ar-aar-aaar.github.io/S/S.mp3" type="audio/mpeg">
     </audio>
